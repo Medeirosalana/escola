@@ -7,8 +7,11 @@ import model.Aluno;
 public class AlunoView {
     Scanner sc = new Scanner(System.in);
     AlunoController ac =  new AlunoController();
+    
     private  void run(){
+        
         int opcao = -1;
+        Aluno aluno = new Aluno();
         do{
         System.out.println(
                 "=== Alunos ==="
@@ -24,7 +27,7 @@ public class AlunoView {
         opcao = sc.nextInt();
         switch(opcao){
             case 1:
-                Aluno aluno = new Aluno();
+                
                 System.out.println("Matricula: ");
                 aluno.setMatricula(sc.nextInt());
                 System.out.println("Nome: ");
@@ -39,12 +42,48 @@ public class AlunoView {
                 }
                 break;
             case 3:
+                
                 System.out.println("Digite a Id do aluno: ");
+                aluno = ac.findById(sc.nextInt());
+                if (aluno == null){
+                    System.out.println("Aluno não encontrado");
+                }else{
+                    System.out.println(aluno.toString());
+                }
+                break;       
                 
                 
-                        
+                
+            case 5:
+                System.out.println("Digite a Mtricula:  ");
+                aluno = ac.findById(sc.nextInt());
+                if(aluno == null){
+                    System.out.println("Aluno Não encontrado");
+                }else{
+                ac.delete(aluno);
+                }
+                break;
+                
+            case 4:
+                System.out.println("Digite a Mtricula: ");
+                aluno = ac.findById(sc.nextInt());
+                if(aluno == null){
+                    System.out.println("Aluno Não Encontrado");
+                }else{
+                    System.out.println("Nome: ");
+                    aluno.setNome(sc.next());
+                    System.out.println("Nova Idade");
+                    aluno.setIdade(sc.nextInt());
+                    ac.update(aluno);
                     
-                                     
+                }
+            break;
+                
+                
+                      
+                
+                                        
+                                                         
             }  
         } while (opcao != 0);
     }
