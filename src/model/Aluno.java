@@ -1,38 +1,28 @@
 package model;
 
-public class Aluno {
+import controller.Persiste;
 
-   private int matricula;
-   private String nome;
-   private int idade;
+public class Aluno extends Pessoa implements Persiste {
+    private int matricula;
+   
 
+   @Override
     public int getMatricula() {
         return matricula;
     }
 
+   @Override
     public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
+  
 
     @Override
     public String toString() {
-        return "Aluno{" + "matricula=" + matricula + ", nome=" + nome + ", idade=" + idade + '}';
+        return "Aluno{" + "matricula= " + matricula + 
+                ", nome= " + super.getNome() + 
+                ", idade= " +super.getIdade() + '}';
     }
 
     

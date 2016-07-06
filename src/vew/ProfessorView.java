@@ -1,86 +1,112 @@
 package vew;
 
+import controller.AlunoController;
 import controller.ProfessorController;
 import java.util.Scanner;
 import model.Professor;
 
 public class ProfessorView {
+    private ProfessorController pc = new ProfessorController();
     Scanner sc = new Scanner(System.in);
-    ProfessorController ac =  new ProfessorController();
    
-    private  void run(){
+    public ProfessorView(){}
+    void run(){
         
         int opcao = -1;
-        Professor professor = new Professor();
         do{
+            
         System.out.println(
-                "=== Professor ==="
-              + "\n1-Cadrastar"
-              + "\n2-Listar Tudo"
+                "=== Professores ==="
+              + "\n1-Cadrastar profs"
+              + "\n2-Listar Tudos profs"
               + "\n3-Buscar Por Matricula"
-              + "\n4-Editar"
-              + "\n5-Excluir"
-              + "\n0-sair"
-              + "\n=============="
+              + "\n4-Editar professor"
+              + "\n5-Excluir professor"
+              
+              + "\n0-retornar"
+              + "\n==================="
               + "\nOpção: "
         );
         opcao = sc.nextInt();
         switch(opcao){
-            case 1:
-                System.out.println("Matricula: ");
-                professor.setMatricula(sc.nextInt());
-                System.out.println("Nome: ");
-                professor.setNome(sc.next());
-                System.out.println("Disciplina: ");
-                professor.setDisciplina(sc.next());
-                ac.create(professor);
+            case 1: 
+                cadastrar();
                 break;
-            case 2: 
-                for (Professor a : ac.findALL()){
-                    System.out.println(a.toString());
-                }
+            case 2:
+                Listartudo();
                 break;
             case 3:
-                System.out.println("Digite a Matricula: ");
-                professor = ac.findById(sc.nextInt());
-                if(professor == null){
-                    System.out.println("Professor não encontrado");
-                }else{
-                    System.out.println(professor.toString());
-                }
+                Buscarporid();
                 break;
             case 4:
-                System.out.println("Digite a matricula: ");
-                professor = ac.findById(sc.nextInt());
-                if(professor == null){
-                    System.out.println("Professor nao encontrado");
-                }else{
-                    System.out.println("Novo nome: ");
-                    professor.setNome(sc.next());
-                    System.out.println("Nova Disciplina: ");
-                    professor.setDisciplina(sc.next());
-                    ac.update(professor);
-                }
+                editar();
                 break;
             case 5:
-                System.out.println("Digite a matricula: ");
-                professor = ac.findById(sc.nextInt());
-                if(professor == null){
-                    System.out.println("Professor não encontrado");
-                }else{
-                ac.delete(professor);
-                }
+                remover();
                 break;
+            case 6:
                 
         }
-        
         }while (opcao != 0);
-    }
-    public ProfessorView(){}
+               
+    } 
+       private void cadastrar(){
+       Professor professor = new Professor();          
+           System.out.println("Nome: ");
+           professor.setNome(sc.next());
+           System.out.println("Idade: ");
+           professor.setIdade(sc.nextInt());
+           System.out.println("Disciplina: ");
+           professor.setDisciplina(sc.next());
+           pc.create(professor);
+       }
+       private void Listartudo(){
+           for (Professor professor : pc.findALL()){
+               System.out.println(professor.toString());                       
+           }
+       }
+       private void remover(){
+           Professor professor = new Professor();
+           System.out.println("Matricula: ");
+           professor = pc.findById(sc.nextInt());
+           if (professor == null){
+               System.out.println("Professor não encontrado");
+           }else{
+               pc.delete(professor);
+           }
+       }
+       private void Buscarporid(){
+       Professor professor = new Professor();
+           System.out.println("Matricula: ");
+           professor = pc.findById(sc.nextInt());
+           if (professor == null){
+               System.out.println("Professor não encontrado");
+           }else{
+               System.out.println(professor.toString());
+           }
+       }
+        private void editar(){
+        Professor professor = new Professor();
+            System.out.println("Matricula: ");
+            professor = pc.findById(sc.nextInt());
+            if (professor == null){
+                System.out.println("Professor não encontrado");
+            }else{
+                System.out.println("Novo Nome: ");
+                professor.setNome(sc.next());
+                System.out.println("Nova Idade: ");
+                professor.setIdade(sc.nextInt());
+                System.out.println("Nova Disciplina: ");
+                professor.setDisciplina(sc.next());
+                pc.update(professor);
+            }
+            
+        }          
+                   
+      
+       
     
-    public static void main(String[] args) {
-        new ProfessorView().run();
-    }
     
-    
-}       
+
+
+}              

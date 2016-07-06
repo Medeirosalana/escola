@@ -1,26 +1,22 @@
 package model;
 
-public class Professor {
-    private int matricula;
-    private String nome;
-    private String disciplina;
+import controller.Persiste;
 
+public class Professor extends Pessoa  implements Persiste {
+    private int matricula;   
+    private String disciplina;
+    
+
+    @Override
     public int getMatricula() {
         return matricula;
     }
 
+    @Override
     public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
+   
     public String getDisciplina() {
         return disciplina;
     }
@@ -31,7 +27,12 @@ public class Professor {
 
     @Override
     public String toString() {
-        return "Professor{" + "matricula=" + matricula + ", nome=" + nome + ", disciplina=" + disciplina + '}';
-    }
+        return "Professor{" + "matricula= " + matricula + 
+                ", nome= " + super.getNome() 
+                + ", disciplina= " + disciplina +
+                ", idade= " + super.getIdade() + '}';
+    }   
+
+  
     
 }

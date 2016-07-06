@@ -1,15 +1,19 @@
 package vew;
 
+
 import controller.AlunoController;
+import controller.ProfessorController;
 import java.util.Scanner;
 import model.Aluno;
 
 public class AlunoView {
+   
+     private AlunoController ac = new AlunoController();
     Scanner sc = new Scanner(System.in);
-    AlunoController ac =  new AlunoController();
     
-    private  void run(){
-        
+   
+    void run(){
+       
         int opcao = -1;
         Aluno aluno = new Aluno();
         do{
@@ -26,10 +30,7 @@ public class AlunoView {
         );
         opcao = sc.nextInt();
         switch(opcao){
-            case 1:
-                
-                System.out.println("Matricula: ");
-                aluno.setMatricula(sc.nextInt());
+            case 1:                
                 System.out.println("Nome: ");
                 aluno.setNome(sc.next());
                 System.out.println("Idade: ");
@@ -43,7 +44,7 @@ public class AlunoView {
                 break;
             case 3:
                 
-                System.out.println("Digite a Id do aluno: ");
+                System.out.println("Digite a matricula do aluno: ");
                 aluno = ac.findById(sc.nextInt());
                 if (aluno == null){
                     System.out.println("Aluno não encontrado");
@@ -55,7 +56,7 @@ public class AlunoView {
                 
                 
             case 5:
-                System.out.println("Digite a Mtricula:  ");
+                System.out.println("Digite a Matricula:  ");
                 aluno = ac.findById(sc.nextInt());
                 if(aluno == null){
                     System.out.println("Aluno Não encontrado");
@@ -77,6 +78,7 @@ public class AlunoView {
                     ac.update(aluno);
                     
                 }
+            
             break;
                 
                 
@@ -87,14 +89,11 @@ public class AlunoView {
             }  
         } while (opcao != 0);
     }
-    public AlunoView(){}
-        
+   
     
     
     
     
     
-    public static void main(String[] args) {
-        new AlunoView().run();
-    }
+
 }
