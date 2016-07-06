@@ -1,5 +1,6 @@
 package vew;
 
+import controller.AlunoController;
 import controller.TurmaController;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,8 @@ public class TurmaView {
     private TurmaController tc = new TurmaController();
     Scanner sc = new Scanner(System.in);
      ArrayList<Aluno> aluno ;
+     AlunoController ac;
+    private Aluno Aluno;
     
     
     
@@ -39,6 +42,13 @@ public class TurmaView {
                 System.out.println("Sala: ");
                 turma.setSala(sc.nextInt());
                 System.out.println("Matricula do aluno: ");
+                 ac.findById(sc.nextInt());
+                 if(aluno == null){
+                     System.out.println("Aluno não encontrado");
+                 }else{
+                 aluno.add(Aluno);
+                 }
+                System.out.println("Matricula Professor: ");
                 
                 break;
                                                         
